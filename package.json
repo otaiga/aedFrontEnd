@@ -1,0 +1,31 @@
+{
+  "name": "aed_front",
+  "version": "1.0.0",
+  "description": "AED front end mapping app",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha --recursive",
+    "pretest": "eslint ."
+  },
+  "keywords": [
+    "AED",
+    "frontend"
+  ],
+  "author": "Karl Turner",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "ejs": "^2.5.6",
+    "express": "^4.15.2",
+    "node-fetch": "^1.6.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "eslint": "^3.17.0",
+    "eslint-config-airbnb-base": "^11.1.1",
+    "eslint-plugin-import": "^2.2.0",
+    "mocha": "^3.2.0",
+    "proxyquire": "^1.7.11"
+  }
+}

@@ -1,0 +1,9 @@
+*.json
+*.env
+*.md
+Procfile
+*.log
+Vagrantfile
+deployment/*
+dump.rdb
+public/js/markerClusterer.js

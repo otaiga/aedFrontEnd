@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/css/custom.css'/>
+  </head>
+  <body>
+    <h3>AED Locations</h3>
+    <div id='map'></div>
+    <% if (aedData) { %>
+      <script>
+        const aeds = <%- JSON.stringify(aedData) %>;
+      </script>
+    <% } %>
+    <script>
+      var map;
+      function addAeds(aedData) {
+        var markers = aedData.map((location) => {
+          return new google.maps.Marker({
+            position: { lat: location.latitude, lng: location.longitude },
+          });
+        });
+        const markerCluster = new MarkerClusterer(map, markers, { imagePath: '/images/m' });
+      }
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 8,
+          minZoom: 5,
+          center: new google.maps.LatLng(52.2232,-0.9837),
+          mapTypeId: 'terrain'
+        });
+        addAeds(aeds)
+      }
+    </script>
+    <script src='/js/markerClusterer.js'></script>
+    <script async defer src='https://maps.googleapis.com/maps/api/js?key=<% googleKey %>&callback=initMap'></script>
+  </body>
+</html>
