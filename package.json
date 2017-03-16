@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha --recursive",
-    "pretest": "eslint ."
+    "pretest": "eslint .",
+    "start": "node server"
   },
   "keywords": [
     "AED",

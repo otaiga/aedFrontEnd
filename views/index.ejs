@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>AED Locations</title>
     <link rel='stylesheet' href='/css/custom.css'/>
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <script src='/js/custom.js'></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
   </head>
   <body>
-    <h3>AED Locations</h3>
+    <nav class="light-blue lighten-1" role="navigation">
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="/" class="brand-logo">AED Locations</a>
+      </div>
+    </nav>
     <div id='map'></div>
     <% if (aedData) { %>
       <script>
         const aeds = <%- JSON.stringify(aedData) %>;
       </script>
     <% } %>
-    <script>
-      var map;
-      function addAeds(aedData) {
-        var markers = aedData.map((location) => {
-          return new google.maps.Marker({
-            position: { lat: location.latitude, lng: location.longitude },
-          });
-        });
-        const markerCluster = new MarkerClusterer(map, markers, { imagePath: '/images/m' });
-      }
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 8,
-          minZoom: 5,
-          center: new google.maps.LatLng(52.2232,-0.9837),
-          mapTypeId: 'terrain'
-        });
-        addAeds(aeds)
-      }
-    </script>
+    <footer class="page-footer orange">
+      <div class="footer-copyright">
+        <div class="container">
+          Made by <a class="orange-text text-lighten-3" href="#">Karl Turner</a>
+        </div>
+      </div>
+    </footer>
     <script src='/js/markerClusterer.js'></script>
     <script async defer src='https://maps.googleapis.com/maps/api/js?key=<% googleKey %>&callback=initMap'></script>
   </body>
