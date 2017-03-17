@@ -6,6 +6,7 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <script src='/js/custom.js'></script>
+    <script src="/js/handlebars.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
@@ -19,11 +20,6 @@
       </div>
     </nav>
     <div id='map'></div>
-    <% if (aedData) { %>
-      <script>
-        const aeds = <%- JSON.stringify(aedData) %>;
-      </script>
-    <% } %>
     <footer class="page-footer orange">
       <div class="footer-copyright">
         <div class="container">
@@ -31,7 +27,30 @@
         </div>
       </div>
     </footer>
+    <% if (aedData) { %>
+      <script>
+        const aeds = <%- JSON.stringify(aedData) %>;
+      </script>
+    <% } %>
+    <script id="aedTemplate" type="text/x-handlebars-template">
+      <div id="siteNotice"></div>
+      <h5 id="firstHeading" class="firstHeading">{{facility_name}}</h5>
+      <div id="bodyContent">
+        <p>
+          <b>{{address_line_1}}, {{address_line_2}}, {{post_code}}</b>
+        </p>
+        <ul>
+          {{#if phone}}
+            <li><b>Phone Contact</b>: {{phone}}</li>
+          {{/if}}
+          <li><b>Number of AEDs</b>: {{aed_count}}</li>
+          {{#if aed_location}}
+            <li><b>Location of AED</b>: {{aed_location}}</li>
+          {{/if}}
+        </ul>
+      </div>
+    </script>
     <script src='/js/markerClusterer.js'></script>
-    <script async defer src='https://maps.googleapis.com/maps/api/js?key=<% googleKey %>&callback=initMap'></script>
+    <script async defer src='https://maps.googleapis.com/maps/api/js?key=<%- googleKey %>&callback=initMap'></script>
   </body>
 </html>

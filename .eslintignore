@@ -7,3 +7,4 @@ Vagrantfile
 deployment/*
 dump.rdb
 public/js/markerClusterer.js
+public/js/handlebars.js
